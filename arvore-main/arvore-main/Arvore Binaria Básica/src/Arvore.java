@@ -167,6 +167,7 @@ public class Arvore {
     }
 
     public Lista varredura_largura() throws Exception {
+        // LARGURA ->
         Lista lista = new Lista();
         if (arvore_vazia()) {
             return null;
@@ -189,6 +190,7 @@ public class Arvore {
     }
 
     public Lista varredura_profundidade_vlr() throws Exception {
+        // V L R ->
         Lista lista = new Lista();
         if (arvore_vazia()) {
             return null;
@@ -212,6 +214,7 @@ public class Arvore {
 
     // FIXME: Problema de Looping infinito
     public Lista varredura_profundidade_lvr() throws Exception {
+        // L V R
         Lista lista = new Lista();
         if (arvore_vazia()){
             return null;
@@ -239,6 +242,7 @@ public class Arvore {
 
     //TODO: Verificar mesmo problema de null em buscar pai
     public Lista varredura_profundidade_lrv() throws Exception {
+        // L R V ->
         Lista lista = new Lista();
         if (arvore_vazia()){
             return null;
