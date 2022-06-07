@@ -190,7 +190,7 @@ public class Arvore {
     }
 
     public Lista varredura_profundidade_vlr() throws Exception {
-        // V L R ->
+        // V L R -> Pré-Ordem
         Lista lista = new Lista();
         if (arvore_vazia()) {
             return null;
@@ -214,13 +214,16 @@ public class Arvore {
 
     // FIXME: Problema de Looping infinito
     public Lista varredura_profundidade_lvr() throws Exception {
-        // L V R
+        // L V R -> Em-Ordem
         Lista lista = new Lista();
         if (arvore_vazia()){
             return null;
         } else {
             Pilha pilha = new Pilha();
             No auxiliar = raiz_arvore;
+
+
+
             pilha.add_last(auxiliar);
             while (!pilha.isEmpty()) {
                 if (auxiliar.filho_esquerda != null && !lista.buscar_elemento(auxiliar.elemento)){
@@ -242,21 +245,37 @@ public class Arvore {
 
     //TODO: Verificar mesmo problema de null em buscar pai
     public Lista varredura_profundidade_lrv() throws Exception {
-        // L R V ->
+        // L R V -> Pós-Ordem
         Lista lista = new Lista();
         if (arvore_vazia()){
             return null;
         } else {
             Pilha pilha = new Pilha();
             No auxiliar = raiz_arvore;
+
             while (!pilha.isEmpty()) {
                 auxiliar = pilha.remove_final();
-                if (auxiliar.filho_esquerda != null) {
+                int elemento_direita;
+                int elemento_esquerda;
+
+                if (auxiliar.filho_direita == null) {
+                    elemento_direita = -1;
+                } else {
+                    elemento_direita = auxiliar.filho_direita.elemento;
+                }
+
+                if (auxiliar.filho_esquerda == null) {
+                    elemento_esquerda = -1;
+                } else {
+                    elemento_esquerda = auxiliar.filho_esquerda.elemento;
+                }
+
+                if (elemento_esquerda != -1) {
                     pilha.add_last(auxiliar.filho_esquerda);
                 }
                 if (auxiliar != null && !lista.buscar_elemento(auxiliar.elemento)) {
                     lista.add_start(auxiliar.elemento);
-                    if (auxiliar.filho_direita != null) {
+                    if (elemento_direita != -1) {
                         pilha.add_last(auxiliar.filho_direita);
                         auxiliar = auxiliar.filho_direita;
                     }
@@ -264,6 +283,44 @@ public class Arvore {
             }
         }
         return lista;
+    }
+
+    public void exibirEmOrdem() {
+        if (raiz_arvore != null) {
+            exibirEmOrdem(raiz_arvore);
+            System.out.println();
+        }
+    }
+
+    private void exibirEmOrdem(No raiz) {
+        if (raiz.filho_esquerda != null) {
+            exibirEmOrdem(raiz.filho_esquerda);
+        }
+
+        System.out.print(raiz.elemento + " ");
+
+        if (raiz.filho_direita != null) {
+            exibirEmOrdem(raiz.filho_direita);
+        }
+    }
+
+    public void exibirPosOrdem() {
+        if (raiz_arvore != null) {
+            exibirPosOrdem(raiz_arvore);
+            System.out.println();
+        }
+    }
+
+    private void exibirPosOrdem(No raiz) {
+        if (raiz.filho_esquerda != null) {
+            exibirPosOrdem(raiz.filho_esquerda);
+        }
+
+        if (raiz.filho_direita != null) {
+            exibirPosOrdem(raiz.filho_direita);
+        }
+
+        System.out.print(raiz.elemento + " ");
     }
 
 }

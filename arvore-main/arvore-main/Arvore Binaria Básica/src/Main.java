@@ -12,25 +12,11 @@ public class Main {
 
         TreePrinter.show(arvore.raiz_arvore);
 
-        System.out.println(arvore.buscar_pai(2).elemento);
-        System.out.println(arvore.buscar_pai(4).elemento);
-        System.out.println(arvore.buscar_pai(5).elemento);
-        arvore.remover_elemento(4);
-        System.out.println(arvore.buscar_pai(5).elemento);
-
-        TreePrinter.show(arvore.raiz_arvore);
-
-        arvore.remover_elemento(5);
-
-        TreePrinter.show(arvore.raiz_arvore);
-
-
-        TreePrinter.show(arvore.raiz_arvore);
-
-
 //        arvore.varredura_largura().show();
 //        arvore.varredura_profundidade_vlr().show();
 //        arvore.varredura_profundidade_lvr().show();
 //        arvore.varredura_profundidade_lrv().show();
+        arvore.exibirEmOrdem();
+        arvore.exibirPosOrdem();
     }
 }
